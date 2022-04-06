@@ -1,7 +1,5 @@
-﻿Public Class Square
+﻿Public Class pbox
     Public Property Pen As Pen
-    Public Property w As Integer
-    Public Property h As Integer
     Dim m_image As Image
     Dim m_a As Point
     Dim m_b As Point
@@ -14,7 +12,8 @@
     End Sub
     Public Sub Draw()
         Using g As Graphics = Graphics.FromImage(m_image)
-            g.DrawRectangle(Pen, m_a.X, m_a.Y, 50, 50)
+            g.DrawLine()
+                        (Pen, m_a, m_b)
         End Using
 
     End Sub

@@ -3,6 +3,7 @@
     Dim m_shapes As New Collection
     Dim c As Color
     Dim w As Integer
+    Dim type As String
 
 
     Private Sub pictureBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseDown
@@ -12,12 +13,17 @@
 
     Private Sub pictureBox1_MouseMove(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseMove
         If m_Previous IsNot Nothing Then
-            Dim l As New Line(PictureBox1.Image, m_Previous, e.Location)
+            Dim l As New circle(PictureBox1.Image, m_Previous, e.Location)
             l.Pen = New Pen(c, w)
+            l.w = TrackBar2.Value
+            l.h = TrackBar3.Value
             m_shapes.Add(l)
             PictureBox1.Invalidate()
             m_Previous = e.Location
         End If
+
+
+
     End Sub
 
     Private Sub pictureBox1_MouseUp(sender As Object, e As MouseEventArgs) Handles PictureBox1.MouseUp
@@ -35,7 +41,7 @@
     End Sub
 
     Private Sub PictureBox1_Paint(sender As Object, e As PaintEventArgs) Handles PictureBox1.Paint
-        For Each s As Line In m_shapes
+        For Each s As Object In m_shapes
             s.Draw()
         Next
     End Sub
@@ -47,6 +53,12 @@
 
     End Sub
 
+
+
+
+    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
+        w = TrackBar1.Value
+    End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         c = sender.backcolor
     End Sub
@@ -94,5 +106,13 @@
     Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
         SaveFileDialog1.ShowDialog()
         PictureBox1.Image.Save(SaveFileDialog1.FileName)
+    End Sub
+
+    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click
+
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
+        type = "picture"
     End Sub
 End Class

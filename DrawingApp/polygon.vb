@@ -1,4 +1,4 @@
-﻿Public Class Square
+﻿Public Class polygon
     Public Property Pen As Pen
     Public Property w As Integer
     Public Property h As Integer
@@ -14,8 +14,7 @@
     End Sub
     Public Sub Draw()
         Using g As Graphics = Graphics.FromImage(m_image)
-            g.DrawRectangle(Pen, m_a.X, m_a.Y, 50, 50)
+            g.DrawEllipse(Pen, m_a.X, m_a.Y, 50, 50)
         End Using
-
     End Sub
 End Class
